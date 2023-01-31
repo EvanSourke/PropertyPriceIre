@@ -1,0 +1,33 @@
+
+<form class="house-search-form">
+  <mat-form-field class="full-width, county"  appearance="fill">
+    <mat-label>County</mat-label>
+    <input type="text"
+           placeholder="County"
+           aria-label="County"
+           matInput
+           [formControl]="control"
+           [matAutocomplete]="auto1">
+    <mat-autocomplete #auto1="matAutocomplete">
+      <mat-option *ngFor="let county of filteredCounties | async" [value]="county">
+        {{county}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="full-width, property" appearance="fill">
+    <mat-label>Property Type</mat-label>
+    <input type="text"
+           placeholder="Property Type"
+           aria-label="Property Type"
+           matInput
+           [formControl]="control"
+           [matAutocomplete]="auto2">
+    <mat-autocomplete #auto2="matAutocomplete">
+      <mat-option *ngFor="let property of filteredProperties | async" [value]="property">
+        {{property}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+</form>

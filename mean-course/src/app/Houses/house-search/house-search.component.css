@@ -1,0 +1,21 @@
+.house-search-form {
+  margin: auto;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  display: block;
+
+}
+
+.full-width {
+  width: 100%;
+  display: block;
+}
+
+.county {
+  padding-right: 50px;
+}
+
+
+
+
