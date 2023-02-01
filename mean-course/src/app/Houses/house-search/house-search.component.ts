@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { Observable } from "rxjs";
 import {startWith, map} from 'rxjs/operators';
 
@@ -66,9 +66,12 @@ export class HouseSearchComponent implements OnInit {
       startWith(''),
       map(value => this._filterProperties(value || '')),
     );
-
-
   }
+
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
 
   private _filterCounties(value: string): string[] {
     const filterValue = this._normalizeValue(value);

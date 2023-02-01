@@ -8,6 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
@@ -31,6 +33,8 @@ import { HouseSearchComponent } from './Houses/house-search/house-search.compone
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
