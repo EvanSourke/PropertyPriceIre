@@ -2,6 +2,23 @@
   text-align: center;
 }
 
+.card {
+  background-color: grey;
+}
+
+.county {
+  padding-top: 20px;
+}
+
+.priceFrom {
+  padding-top: 15px;
+  padding-right: 15px;
+}
+
+.address {
+  width: 70;
+}
+
 
 
 

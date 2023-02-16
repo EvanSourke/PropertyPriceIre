@@ -51,10 +51,13 @@ export class HouseSearchComponent implements OnInit {
 
   properties: string[] = ['New Dwelling house /Apartment','Second-Hand Dwelling house /Apartment'];
 
+  prices: string [] = ['50000','75000','100000','125000','150000','175000','200000','225000','250000','275000','300000','325000','350000','375000','400000','450000','500000','600000,','700000','800000','800000','1000000', '2000000','5000000']
+
 
 
   filteredCounties: Observable<string[]>;
   filteredProperties: Observable<string[]>;
+  filteredPrices: Observable<string[]>;
 
   ngOnInit() {
     this.filteredCounties = this.control.valueChanges.pipe(
@@ -66,6 +69,13 @@ export class HouseSearchComponent implements OnInit {
       startWith(''),
       map(value => this._filterProperties(value || '')),
     );
+
+    this.filteredPrices = this.control.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterPrices(value || '')),
+    );
+
+
   }
 
   range = new FormGroup({
@@ -76,6 +86,11 @@ export class HouseSearchComponent implements OnInit {
   private _filterCounties(value: string): string[] {
     const filterValue = this._normalizeValue(value);
     return this.counties.filter(street => this._normalizeValue(street).includes(filterValue));
+  }
+
+  private _filterPrices(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.prices.filter(street => this._normalizeValue(street).includes(filterValue));
   }
 
   private _filterProperties(value: string): string[] {

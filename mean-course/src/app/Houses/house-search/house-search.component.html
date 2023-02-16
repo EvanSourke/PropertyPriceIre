@@ -1,6 +1,7 @@
 
 <div class="form-fields">
 <form >
+  <mat-card class="card">
   <div>
   <mat-form-field class="county"  appearance="fill">
     <mat-label>County</mat-label>
@@ -50,7 +51,54 @@
   </mat-form-field>
 </div>
 
-  <!-- <p>Selected range: {{range.value | json}}</p> -->
+<div>
+  <mat-form-field class="priceFrom" appearance="fill">
+    <mat-label>Price From (€)</mat-label>
+    <input type="text"
+           placeholder="Price From (€)"
+           aria-label="Price From (€)"
+           matInput
+           [formControl]="control"
+           [matAutocomplete]="auto3">
+    <mat-autocomplete #auto3="matAutocomplete">
+      <mat-option *ngFor="let prices of filteredPrices | async" [value]="price">
+        {{prices}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 
+  <mat-form-field class="priceTo" appearance="fill">
+    <mat-label>Price To (€)</mat-label>
+    <input type="text"
+           placeholder="Price To (€)"
+           aria-label="Price To (€)"
+           matInput
+           [formControl]="control"
+           [matAutocomplete]="auto4">
+    <mat-autocomplete #auto4="matAutocomplete">
+      <mat-option *ngFor="let prices of filteredPrices | async" [value]="price">
+        {{prices}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field class="Address" appearance="fill">
+    <mat-label>Address</mat-label>
+    <input type="text"
+           placeholder="Address"
+           aria-label="Address"
+           matInput
+           [formControl]="control"
+           [matAutocomplete]="auto5">
+    <mat-autocomplete #auto5="matAutocomplete">
+    </mat-autocomplete>
+  </mat-form-field>
+
+</div>
+
+  <!-- <p>Selected range: {{range.value | json}}</p> -->
+</mat-card>
 </form>
 </div>
