@@ -1,9 +1,16 @@
+.searchOptions{
+  text-align: center;
+  padding-bottom: 15px;
+}
+
 .form-fields {
   text-align: center;
 }
 
 .card {
   background-color: grey;
+  margin: 0 auto;
+  width: 20%;
 }
 
 .county {
@@ -16,7 +23,7 @@
 }
 
 .address {
-  width: 70;
+  text-align: center;
 }
 
 

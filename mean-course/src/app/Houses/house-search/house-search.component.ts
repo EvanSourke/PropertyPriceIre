@@ -14,6 +14,18 @@ import {startWith, map} from 'rxjs/operators';
 
 export class HouseSearchComponent implements OnInit {
 
+  PriceSearch=true;
+  AddressSearch=false;
+ toggleSearch1(){
+  this.PriceSearch=true;
+  this.AddressSearch=false;
+ };
+ toggleSearch2(){
+  this.PriceSearch=false;
+  this.AddressSearch=true;
+ };
+
+
   control = new FormControl('');
   counties: string[] = [
   'Antrim',
