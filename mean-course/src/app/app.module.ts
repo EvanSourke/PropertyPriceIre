@@ -10,6 +10,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { HouseSearchComponent } from './Houses/house-search/house-search.compone
     MatAutocompleteModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatButtonToggleModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
