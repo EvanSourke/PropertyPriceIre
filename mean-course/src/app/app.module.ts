@@ -14,9 +14,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-//import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { HeaderComponent } from './header/header.component';
-//import { PostListComponent } from './posts/post-list/post-list.component';
+import { HouseListComponent } from './Houses/house-list/house-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HouseSearchComponent } from './Houses/house-search/house-search.component';
 
@@ -26,7 +25,8 @@ import { HouseSearchComponent } from './Houses/house-search/house-search.compone
   declarations: [
     AppComponent,
     HeaderComponent,
-    HouseSearchComponent
+    HouseSearchComponent,
+    HouseListComponent
   ],
   imports: [
     BrowserModule,

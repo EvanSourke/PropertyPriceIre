@@ -9,8 +9,8 @@
 
 .card {
   background-color: grey;
-  margin: 0 auto;
-  width: 20%;
+  margin: auto;
+  width: auto;
 }
 
 .county {
