@@ -101,12 +101,9 @@ export class HouseSearchComponent implements OnInit {
     let Start: Moment  = this.MainForm.controls['Start'].value;
     let End: Moment = this.MainForm.controls['End'].value;
 
-    // moment(Start).format('DD/MM/YYYY');
-    // moment(End).format('DD/MM/YYYY');
+    console.log(this.MainForm.controls['County'].value, this.MainForm.controls['PropertyType'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
 
-    //console.log(this.MainForm.controls['County'].value, this.MainForm.controls['PropertyType'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
-
-    this.housesService.getHouses(this.MainForm.controls['County'].value, this.MainForm.controls['PropertyType'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
+    //this.housesService.getHouses(this.MainForm.controls['County'].value, this.MainForm.controls['PropertyType'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
   }
 
 
