@@ -12,13 +12,16 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HttpClientModule } from "@angular/common/http";
+import { MomentDateModule } from '@angular/material-moment-adapter';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HouseListComponent } from './Houses/house-list/house-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HouseSearchComponent } from './Houses/house-search/house-search.component';
-
+import { MY_DATE_FORMATS } from './Houses/house-search/date-formats';
 
 
 @NgModule({
@@ -43,9 +46,12 @@ import { HouseSearchComponent } from './Houses/house-search/house-search.compone
     MatCardModule,
     MatToolbarModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    MomentDateModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

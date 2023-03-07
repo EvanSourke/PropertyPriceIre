@@ -34,8 +34,8 @@ app.use((req, res ,next)=> {
 });
 
 //only http requests with '' will reach this
-app.get('',(req, res, next) => {
-  House.find()
+app.get('/api/GET',(req, res, next) => {
+  house.find()
   .then(documents => {
     res.status(200).json({
       message: 'Houses fetched successfully!',

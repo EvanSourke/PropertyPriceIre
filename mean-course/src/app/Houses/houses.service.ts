@@ -16,7 +16,7 @@ export class HousesService {
   constructor(private http: HttpClient) {}
 
   getHouses(County: String, PropertyType: String, Start: String, End: String, PriceFrom: String, PriceTo: String){
-   this.http.get<{message: string, houses: any}>('http://localhost:3000')
+   this.http.get<{message: string, houses: any}>('http://localhost:3000/api/GET')
       .pipe(map((houseData)=> {
         return houseData.houses.map(house => {
           return {

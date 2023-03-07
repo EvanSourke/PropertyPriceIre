@@ -1,9 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { Observable } from "rxjs";
 import {startWith, map} from 'rxjs/operators';
-import { HousesService } from "../houses.service";
 
+import { HousesService } from "../houses.service";
+import {Moment} from 'moment';
+
+
+const moment = require('moment');
 
 
 @Component({
@@ -13,6 +17,7 @@ import { HousesService } from "../houses.service";
 })
 
 export class HouseSearchComponent implements OnInit {
+
 
 
   MainForm : FormGroup;
@@ -38,6 +43,7 @@ export class HouseSearchComponent implements OnInit {
 
   PriceSearch=true;
   AddressSearch=false;
+
  toggleSearch1(){
   this.PriceSearch=true;
   this.AddressSearch=false;
@@ -92,9 +98,15 @@ export class HouseSearchComponent implements OnInit {
   filteredPrices: Observable<string[]>;
 
   priceSearch(){
-    console.log(this.MainForm.get('County').value, this.MainForm.get('PropertyType').value, this.DateForm.get('Start').value, this.DateForm.get('End').value, this.MainForm.get('PriceFrom').value, this.MainForm.get('PriceTo').value);
+    let Start: Moment  = this.MainForm.controls['Start'].value;
+    let End: Moment = this.MainForm.controls['End'].value;
 
-    this.housesService.getHouses(this.MainForm.get('County').value, this.MainForm.get('PropertyType').value, this.DateForm.get('Start').value, this.DateForm.get('End').value, this.MainForm.get('PriceFrom').value, this.MainForm.get('PriceTo').value);
+    // moment(Start).format('DD/MM/YYYY');
+    // moment(End).format('DD/MM/YYYY');
+
+    //console.log(this.MainForm.controls['County'].value, this.MainForm.controls['PropertyType'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
+
+    this.housesService.getHouses(this.MainForm.controls['County'].value, this.MainForm.controls['PropertyType'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
   }
 
 
@@ -116,6 +128,7 @@ export class HouseSearchComponent implements OnInit {
       map(value => this._filterPrices(value || '')),
     );
 
+    this.priceSearch();
 
   }
 

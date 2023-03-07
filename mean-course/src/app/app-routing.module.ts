@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-//import { PostCreateComponent } from "./Houses/post-create/post-create.component";
 import { HouseSearchComponent } from "./Houses/house-search/house-search.component";
 
 
