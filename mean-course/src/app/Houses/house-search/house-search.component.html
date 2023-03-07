@@ -1,0 +1,120 @@
+
+<div class="form-fields">
+<form [formGroup]="MainForm" (ngSubmit)="priceSearch()" >
+  <div class="searchOptions">
+    <button mat-raised-button (click)="toggleSearch1()">Price Search</button>
+    <button mat-raised-button (click)="toggleSearch2()">Address Search</button>
+  </div>
+
+  <mat-card class="card">
+  <div *ngIf = "PriceSearch">
+  <mat-form-field class="county"  appearance="fill">
+    <mat-label>County</mat-label>
+    <input type="text"
+           placeholder="County"
+           aria-label="County"
+           matInput
+           formControlName="County"
+           [matAutocomplete]="auto1">
+    <mat-autocomplete #auto1="matAutocomplete">
+      <mat-option *ngFor="let county of filteredCounties | async" [value]="county">
+        {{county}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+</div>
+<div *ngIf = "PriceSearch">
+  <mat-form-field class="property" appearance="fill">
+    <mat-label>Property Type</mat-label>
+    <input type="text"
+           placeholder="Property Type"
+           aria-label="Property Type"
+           matInput
+           formControlName="PropertyType"
+           [matAutocomplete]="auto2"
+           name="PropertyType">
+    <mat-autocomplete #auto2="matAutocomplete">
+      <mat-option *ngFor="let property of filteredProperties | async" [value]="property">
+        {{property}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+
+<div *ngIf = "PriceSearch">
+
+  <mat-form-field class="date" appearance="fill">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input  [rangePicker]="picker" >
+      <input matStartDate formControlName="Start" placeholder="Start date">
+      <input matEndDate formControlName="End" placeholder="End date" >
+    </mat-date-range-input>
+    <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+    <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+    <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+  </mat-form-field>
+
+</div>
+
+<div *ngIf = "PriceSearch">
+  <mat-form-field class="priceFrom" appearance="fill">
+    <mat-label>Price From (€)</mat-label>
+    <input type="text"
+           placeholder="Price From (€)"
+           aria-label="Price From (€)"
+           matInput
+           formControlName="PriceFrom"
+           [matAutocomplete]="auto3"
+           name="PriceFrom">
+    <mat-autocomplete #auto3="matAutocomplete">
+      <mat-option *ngFor="let prices of filteredPrices | async" [value]="prices">
+        {{prices}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="priceTo" appearance="fill">
+    <mat-label>Price To (€)</mat-label>
+    <input type="text"
+           placeholder="Price To (€)"
+           aria-label="Price To (€)"
+           matInput
+           formControlName="PriceTo"
+           [matAutocomplete]="auto4"
+           name="PriceTo">
+    <mat-autocomplete #auto4="matAutocomplete">
+      <mat-option *ngFor="let prices of filteredPrices | async" [value]="prices">
+        {{prices}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+</div>
+
+<div>
+  <button mat-raised-button type="submit">Search</button>
+</div>
+
+<div *ngIf = "AddressSearch">
+  <mat-form-field class="Address" appearance="fill">
+    <mat-label>Address</mat-label>
+    <input type="text"
+           placeholder="Address"
+           aria-label="Address"
+           matInput
+           [formControl]="Address"
+           [matAutocomplete]="auto5">
+    <mat-autocomplete #auto5="matAutocomplete">
+    </mat-autocomplete>
+  </mat-form-field>
+
+</div>
+
+  <!-- <p>Selected range: {{range.value | json}}</p> -->
+</mat-card>
+</form>
+</div>

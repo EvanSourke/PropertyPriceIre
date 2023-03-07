@@ -1,0 +1,33 @@
+.searchOptions{
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.form-fields {
+  text-align: center;
+}
+
+.card {
+  background-color: grey;
+  margin: auto;
+  width: auto;
+}
+
+.county {
+  padding-top: 20px;
+}
+
+.priceFrom {
+  padding-top: 15px;
+  padding-right: 15px;
+}
+
+.address {
+  text-align: center;
+}
+
+
+
+
+
+
