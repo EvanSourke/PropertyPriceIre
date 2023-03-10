@@ -7,7 +7,8 @@ const houseSchema = mongoose.Schema({
   County: { type: String, required: true },
   Price: { type: Number, required: true },
   Description: { type: String, required: true }
-});
+},
+{collection : 'houseData'});
 
 
 module.exports = mongoose.model('House',  houseSchema);

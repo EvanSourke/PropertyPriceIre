@@ -7,7 +7,7 @@ const house = require("./models/house");
 
 const app = express();
 
-mongoose.connect("mongodb+srv://EvanS:ewavAgwbD5KPkQLj@fyp.mj91dum.mongodb.net/houseData?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://EvanS:ewavAgwbD5KPkQLj@FYP.mj91dum.mongodb.net/FYP?retryWrites=true&w=majority")
   .then(()=>{
     console.log('Connected to Database!')
   })
@@ -39,7 +39,7 @@ app.get('/api/GET',(req, res, next) => {
   .then(documents => {
     res.status(200).json({
       message: 'Houses fetched successfully!',
-      houses: documents
+      houseData: documents
     });
   });
 });
