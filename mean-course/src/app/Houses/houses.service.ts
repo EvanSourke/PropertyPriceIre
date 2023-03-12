@@ -36,7 +36,7 @@ export class HousesService {
 
   }
 
-  getPostUpdateListener(){
+  getHouseUpdateListener(){
     return this.housesUpdated.asObservable();
   }
 

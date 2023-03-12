@@ -20,7 +20,7 @@ export class HouseListComponent implements OnInit, OnDestroy  {
 
   ngOnInit(){
    // this.House.getHouses();
-    this.housesSub = this.House.getPostUpdateListener()
+    this.housesSub = this.House.getHouseUpdateListener()
     .subscribe((houses: House[]) => {
       this.houses = houses;
     });
