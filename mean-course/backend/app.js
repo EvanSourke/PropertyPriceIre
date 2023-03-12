@@ -35,7 +35,14 @@ app.use((req, res ,next)=> {
 
 //only http requests with '' will reach this
 app.get('/api/GET',(req, res, next) => {
-  house.find()
+  const County = String(req.params.County);
+  const PropertyType = String(req.params.PropertyType);
+  const Start = Date(req.params.Start);
+  const End =Date(req.params.End);
+  const PriceFrom = Number(req.params.PriceFrom);
+  const PriceTo = Number(req.params.PriceTo);
+
+  house.where("County").equals(County).where("Description of Property").equals(PropertyType).where("Date of Sale (dd/mm/yyyy)").gte(Start).lte(End).where("Price").gt(PriceFrom).lt(PriceTo)
   .then(documents => {
     res.status(200).json({
       message: 'Houses fetched successfully!',
