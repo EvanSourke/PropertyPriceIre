@@ -10,32 +10,41 @@ import { TitleCasePipe } from '@angular/common';
 @Injectable({providedIn: 'root'})
 export class HousesService {
 
-  private house: House[] = [];
+  private houses: House[] = [];
   private housesUpdated = new Subject<House[]>();
 
   constructor(private http: HttpClient) {}
 
 //'http://localhost:3000/api/GET/'+County+'/'+PropertyType+'/'+Start+'/'+End+'/'+PriceFrom+'/'+PriceTo
 
-  getHouses(County: String, PropertyType: String, Start: String, End: String, PriceFrom: String, PriceTo: String){
-   this.http.get<{message: string, houses: any}>('http://localhost:3000/api/GET')
-      .pipe(map((houseData)=> {
-        return houseData.houses.map(house => {
-          return {
-           Address: house.Address,
-            County: house.County,
-            DateofSale: house.DateofSale,
-            Price: house.Price,
-            Description: house.Description,
-            id: house._id
-          };
-        })
-      }))
-      .subscribe((transformedPosts) => {
-        this.house = transformedPosts;
-        this.housesUpdated.next([...this.house]);
-      });
+//{message: string, houses: any}
 
+  // getHouses(County: String, PropertyType: String, Start: String, End: String, PriceFrom: String, PriceTo: String){
+  //  this.http.get<{message: string, houses: any}>("http://localhost:3000/api/GET")
+  //     .pipe(map(houseData => {
+  //       return houseData.houses.map(house => {
+  //         return {
+  //          Address: house.Address,
+  //           County: house.County,
+  //           DateofSale: house.DateofSale,
+  //           Price: house.Price,
+  //           Description: house.Description,
+  //           id: house._id
+  //         };
+  //       });
+  //     })
+  //   )
+  //     .subscribe(transformedHouses => {
+  //       this.houses = transformedHouses;
+  //       this.housesUpdated.next([...this.houses]);
+  //     });
+
+  // }
+
+  getHouses(County: String, Start: String, End: String, PriceFrom: String, PriceTo: String){
+    return this.http.get<{County: String, PropertyType: String, Start: String, End: String, PriceFrom: String, PriceTo: String}>(
+      "http://localhost:3000/api/GET/"+County+"/"+Start+"/"+End+"/"+PriceFrom+"/"+PriceTo
+    )
   }
 
   getHouseUpdateListener(){

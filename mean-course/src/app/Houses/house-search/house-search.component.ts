@@ -89,21 +89,22 @@ export class HouseSearchComponent implements OnInit {
   'Wexford',
   'Wicklow'];
 
-  properties: string[] = ['New Dwelling house /Apartment','Second-Hand Dwelling house /Apartment'];
+  // properties: string[] = ['New Dwelling house /Apartment','Second-Hand Dwelling house /Apartment'];
 
   prices: string [] = ['50000','75000','100000','125000','150000','175000','200000','225000','250000','275000','300000','325000','350000','375000','400000','450000','500000','600000','700000','800000','800000','1000000', '2000000','5000000']
 
   filteredCounties: Observable<string[]>;
-  filteredProperties: Observable<string[]>;
+  // filteredProperties: Observable<string[]>;
   filteredPrices: Observable<string[]>;
 
   priceSearch(){
     let Start: Moment  = this.MainForm.controls['Start'].value;
     let End: Moment = this.MainForm.controls['End'].value;
 
-    console.log(this.MainForm.controls['County'].value, this.MainForm.controls['PropertyType'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
+    console.log(this.MainForm.controls['County'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
 
-    this.housesService.getHouses(this.MainForm.controls['County'].value, this.MainForm.controls['PropertyType'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
+    this.housesService.getHouses(this.MainForm.controls['County'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
+
   }
 
 
@@ -115,10 +116,10 @@ export class HouseSearchComponent implements OnInit {
       map(value => this._filterCounties(value || '')),
     );
 
-    this.filteredProperties = this.MainForm.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterProperties(value || '')),
-    );
+    // this.filteredProperties = this.MainForm.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => this._filterProperties(value || '')),
+    // );
 
     this.filteredPrices = this.MainForm.valueChanges.pipe(
       startWith(''),
@@ -145,10 +146,10 @@ export class HouseSearchComponent implements OnInit {
     return this.prices.filter(prices => this._normalizeValue(value).includes(filterValue));
   }
 
-  private _filterProperties(value: string): string[] {
-    const filterValue = this._normalizeValue(value);
-    return this.properties.filter(prices => this._normalizeValue(value).includes(filterValue));
-  }
+  // private _filterProperties(value: string): string[] {
+  //   const filterValue = this._normalizeValue(value);
+  //   return this.properties.filter(prices => this._normalizeValue(value).includes(filterValue));
+  // }
 
   private _normalizeValue(value: string): string {
     return value.toString().toLowerCase().replace(/\s/g, '');

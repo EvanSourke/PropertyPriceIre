@@ -24,7 +24,7 @@
   </mat-form-field>
 
 </div>
-<div *ngIf = "PriceSearch">
+<!-- <div *ngIf = "PriceSearch">
   <mat-form-field class="property" appearance="fill">
     <mat-label>Property Type</mat-label>
     <input type="text"
@@ -40,7 +40,7 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-</div>
+</div> -->
 
 <div *ngIf = "PriceSearch">
 
@@ -63,7 +63,7 @@
 <div *ngIf = "PriceSearch">
   <mat-form-field class="priceFrom" appearance="fill">
     <mat-label>Price From (€)</mat-label>
-    <input type="text"
+    <input type="string"
            placeholder="Price From (€)"
            aria-label="Price From (€)"
            matInput
@@ -79,7 +79,7 @@
 
   <mat-form-field class="priceTo" appearance="fill">
     <mat-label>Price To (€)</mat-label>
-    <input type="text"
+    <input type="string"
            placeholder="Price To (€)"
            aria-label="Price To (€)"
            matInput
