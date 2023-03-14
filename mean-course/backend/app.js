@@ -35,15 +35,21 @@ app.use((req, res ,next)=> {
 
 //"http://localhost:3000/api/GET/"+County+"/"+PropertyType+"/"+Start+"/"+End+"/"+PriceFrom+"/"+PriceTo
 //only http requests with '' will reach this
+//house.where("County").equals(County).where("Date of Sale (dd/mm/yyyy)").gte(Start).lte(End).where("Price").gt(PriceFrom).lt(PriceTo)
+// house.find({County: County, dateOfSale: {$gte: Start, $lte: End }, Price: {$gte: PriceFrom, $lte: PriceTo }})
 
-app.get("/api/GET/:County/:Start/:End/:PriceFrom/:PriceTo" , (req, res, next) => {
-  const County = String(req.params.County);
-  const Start = new Date(req.params.Start);
-  const End = new Date(req.params.End);
-  const PriceFrom = Number(req.params.PriceFrom);
-  const PriceTo = Number(req.params.PriceTo);
+///:County/:Start/:End/:PriceFrom/:PriceTo
 
-  house.where("County").equals(County).where("Date of Sale (dd/mm/yyyy)").gte(Start).lte(End).where("Price").gt(PriceFrom).lt(PriceTo)
+app.get("/api/GET" , (req, res, next) => {
+  const County = String(req.query.County);
+  const Start = new Date(req.query.Start);
+  const End = new Date(req.query.End);
+  const PriceFrom = String(req.query.PriceFrom);
+  const PriceTo = String(req.query.PriceTo);
+
+  console.log(req.query);
+
+  house.find({County: County, dateOfSale: {$gte: Start, $lte: End }, Price: {$gte: PriceFrom, $lte: PriceTo }})
   .then(documents => {
     res.status(200).json({
       message: 'Houses fetched successfully!',
@@ -51,6 +57,7 @@ app.get("/api/GET/:County/:Start/:End/:PriceFrom/:PriceTo" , (req, res, next) =>
     });
   });
 });
+
 
 // app.post("/api/posts", (req, res, next) => {
 //   const post = new Post({

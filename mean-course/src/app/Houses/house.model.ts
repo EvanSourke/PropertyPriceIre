@@ -1,9 +1,9 @@
 
 export interface House {
-  id: string;
-  dateOfSale: String,
-  Address: String,
-  County: String,
-  Price: Number,
-  Description: String
+
+  dateOfSale: string;
+  Address: string;
+  County: string;
+  PriceFrom: string;
+  PriceTo: string;
 }

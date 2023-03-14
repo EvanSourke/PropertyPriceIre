@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators'
+import { Subject, throwError } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators'
 
 import { House } from './house.model'
 import { TitleCasePipe } from '@angular/common';
@@ -13,9 +13,11 @@ export class HousesService {
   private houses: House[] = [];
   private housesUpdated = new Subject<House[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.houses = [];
+  }
 
-//'http://localhost:3000/api/GET/'+County+'/'+PropertyType+'/'+Start+'/'+End+'/'+PriceFrom+'/'+PriceTo
+//'http://localhost:3000/api/GET/"+County+"/"+Start+"/"+End+"/"+PriceFrom+"/"+PriceTo
 
 //{message: string, houses: any}
 
@@ -40,16 +42,36 @@ export class HousesService {
   //     });
 
   // }
+  //{County: String, Start: String, End: String, PriceFrom: String, PriceTo: String}
 
-  getHouses(County: String, Start: String, End: String, PriceFrom: String, PriceTo: String){
-    return this.http.get<{County: String, PropertyType: String, Start: String, End: String, PriceFrom: String, PriceTo: String}>(
-      "http://localhost:3000/api/GET/"+County+"/"+Start+"/"+End+"/"+PriceFrom+"/"+PriceTo
+  getHouses(County: string, Start: Date, End: Date, PriceFrom: string, PriceTo: string){
+    const params = new HttpParams()
+    .set('County', County)
+    .set('Start', Start.toString())
+    .set('End', End.toString())
+    .set('PriceFrom', PriceFrom.toString())
+    .set('PriceTo', PriceTo.toString());
+
+    this.http.get<{houses: House[]}>('http://localhost:3000/api/GET', { params })
+    .pipe(
+      catchError((error) => {
+        console.log('An error occurred while fetching data', error);
+        return throwError('Something went wrong');
+      })
     )
+    .subscribe(response => {
+      this.houses = response.houses;
+      if(this.houses){
+        this.housesUpdated.next([...this.houses]);
+      }
+
+    });
+
   }
 
-  getHouseUpdateListener(){
-    return this.housesUpdated.asObservable();
-  }
+   getHouseUpdateListener(){
+     return this.housesUpdated.asObservable();
+   }
 
 
 

@@ -2,10 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { Observable } from "rxjs";
 import {startWith, map} from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 import { HousesService } from "../houses.service";
 import {Moment} from 'moment';
-
+import { House } from '../house.model';
 
 const moment = require('moment');
 
@@ -17,6 +18,9 @@ const moment = require('moment');
 })
 
 export class HouseSearchComponent implements OnInit {
+
+  private houses: House[] =[];
+  private housesUpdated = new Subject<House[]>();
 
 
 
@@ -100,10 +104,13 @@ export class HouseSearchComponent implements OnInit {
   priceSearch(){
     let Start: Moment  = this.MainForm.controls['Start'].value;
     let End: Moment = this.MainForm.controls['End'].value;
+    const County = this.MainForm.controls['County'].value;
+    const PriceFrom = this.MainForm.controls['PriceFrom'].value;
+    const PriceTo = this.MainForm.controls['PriceTo'].value
 
-    console.log(this.MainForm.controls['County'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
+    console.log(County, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), PriceFrom, PriceTo);
 
-    this.housesService.getHouses(this.MainForm.controls['County'].value, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), this.MainForm.controls['PriceFrom'].value, this.MainForm.controls['PriceTo'].value);
+    this.housesService.getHouses(County, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), PriceFrom , PriceTo)
 
   }
 

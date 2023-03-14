@@ -16,11 +16,11 @@ export class HouseListComponent implements OnInit, OnDestroy  {
   private housesSub: Subscription;
 
 
-  constructor(public House: HousesService){}
+  constructor(public houseService: HousesService){}
 
   ngOnInit(){
    // this.House.getHouses();
-    this.housesSub = this.House.getHouseUpdateListener()
+    this.housesSub = this.houseService.getHouseUpdateListener()
     .subscribe((houses: House[]) => {
       this.houses = houses;
     });
