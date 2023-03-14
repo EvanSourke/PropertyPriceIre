@@ -1,2 +1,2 @@
-# MeanStack
-Learning the MEAN stack
+# PropertyPriceIre
+MEAN Web app for retrieving past house prices in ireland
