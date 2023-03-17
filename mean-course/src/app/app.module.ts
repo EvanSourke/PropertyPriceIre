@@ -50,7 +50,7 @@ import { MY_DATE_FORMATS } from './Houses/house-search/date-formats';
     MomentDateModule
   ],
   providers: [
-    {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
+    {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS},
   ],
   bootstrap: [AppComponent]
 })

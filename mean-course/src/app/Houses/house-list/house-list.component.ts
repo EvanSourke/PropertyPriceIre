@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy} from "@angular/core";
+import { Component, OnInit, OnDestroy, Injectable} from "@angular/core";
 import { Subscription } from "rxjs";
 import { House } from "../house.model";
 import { HousesService } from "../houses.service";
-
+import { houseList } from "../houseList.service";
 
 @Component({
   selector: 'app-house-list',
@@ -10,25 +10,38 @@ import { HousesService } from "../houses.service";
   styleUrls: ['./house-list.component.css']
 })
 
+
 export class HouseListComponent implements OnInit, OnDestroy  {
 
   houses: House[] = [];
   private housesSub: Subscription;
 
 
-  constructor(public houseService: HousesService){}
+  constructor(public houseService: HousesService, public houseList: houseList){}
 
   ngOnInit(){
    // this.House.getHouses();
-    this.housesSub = this.houseService.getHouseUpdateListener()
-    .subscribe((houses: House[]) => {
-      this.houses = houses;
-    });
+   console.log("house list component initialised!");
+
+     this.housesSub = this.houseList.getData()
+     .subscribe((houses: House[]) => {
+     this.houses = houses;
+
+
+     });
   }
 
-  // onDelete(postId: string){
-  //   this.postsService.deletePost(postId);
+  // update(){
+  //   this.housesSub = this.houseService.getHouseUpdateListener()
+  //   .subscribe((houses: House[]) => {
+  //     this.houses = houses;
+
+  //     console.log(this.houses);
+  //   });
   // }
+
+
+
 
   ngOnDestroy(){
     this.housesSub.unsubscribe();

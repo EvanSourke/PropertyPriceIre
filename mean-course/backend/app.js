@@ -7,7 +7,7 @@ const house = require("./models/house");
 
 const app = express();
 
-mongoose.connect("mongodb+srv://EvanS:ewavAgwbD5KPkQLj@FYP.mj91dum.mongodb.net/FYP?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://EvanS:19vZ6bm4DyhtPC3M@FYP.mj91dum.mongodb.net/FYP?retryWrites=true&w=majority")
   .then(()=>{
     console.log('Connected to Database!')
   })
@@ -40,12 +40,14 @@ app.use((req, res ,next)=> {
 
 ///:County/:Start/:End/:PriceFrom/:PriceTo
 
+//, dateOfSale: {$gte: Start, $lte: End },
+
 app.get("/api/GET" , (req, res, next) => {
   const County = String(req.query.County);
   const Start = new Date(req.query.Start);
   const End = new Date(req.query.End);
-  const PriceFrom = String(req.query.PriceFrom);
-  const PriceTo = String(req.query.PriceTo);
+  const PriceFrom = Number(req.query.PriceFrom);
+  const PriceTo = Number(req.query.PriceTo);
 
   console.log(req.query);
 
@@ -53,7 +55,7 @@ app.get("/api/GET" , (req, res, next) => {
   .then(documents => {
     res.status(200).json({
       message: 'Houses fetched successfully!',
-      houseData: documents
+      houses: documents
     });
   });
 });

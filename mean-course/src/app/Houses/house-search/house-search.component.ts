@@ -19,8 +19,8 @@ const moment = require('moment');
 
 export class HouseSearchComponent implements OnInit {
 
-  private houses: House[] =[];
-  private housesUpdated = new Subject<House[]>();
+  // private houses: House[] =[];
+  // private housesUpdated = new Subject<House[]>();
 
 
 
@@ -110,12 +110,14 @@ export class HouseSearchComponent implements OnInit {
 
     console.log(County, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), PriceFrom, PriceTo);
 
-    this.housesService.getHouses(County, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), PriceFrom , PriceTo)
+    //this.housesService.getHouses(County, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), PriceFrom , PriceTo)
 
   }
 
 
   ngOnInit() {
+
+    console.log("House search component initialised!");
 
 
     this.filteredCounties = this.MainForm.valueChanges.pipe(
@@ -123,17 +125,11 @@ export class HouseSearchComponent implements OnInit {
       map(value => this._filterCounties(value || '')),
     );
 
-    // this.filteredProperties = this.MainForm.valueChanges.pipe(
-    //   startWith(''),
-    //   map(value => this._filterProperties(value || '')),
-    // );
-
     this.filteredPrices = this.MainForm.valueChanges.pipe(
       startWith(''),
       map(value => this._filterPrices(value || '')),
     );
 
-    this.priceSearch();
 
   }
 
