@@ -51,7 +51,7 @@ app.get("/api/GET" , (req, res, next) => {
 
   console.log(req.query);
 
-  house.find({County: County, dateOfSale: {$gte: Start, $lte: End }, Price: {$gte: PriceFrom, $lte: PriceTo }})
+  house.find({County: County, DateofSale: {$gte: Start, $lte: End }, Price: {$gte: PriceFrom, $lte: PriceTo }})
   .then(documents => {
     res.status(200).json({
       message: 'Houses fetched successfully!',
@@ -61,28 +61,6 @@ app.get("/api/GET" , (req, res, next) => {
 });
 
 
-// app.post("/api/posts", (req, res, next) => {
-//   const post = new Post({
-//     title: req.body.title,
-//     content: req.body.content
-//   });
-//   post.save().then(createdPost => {
-//       res.status(201).json({
-//       message: 'Post added sucessfully',
-//       postId: createdPost._id
-//     });
-//   });
-// });
-
-// app.delete("/api/posts/:id", (req, res, next ) => {
-//   Post.deleteOne({_id: req.params.id}).then(result => {
-//     console.log(result);
-//     res.status(200).json({
-//       message: "Post deleted!"
-//     });
-//   })
-
-// })
 
 
 module.exports = app;
