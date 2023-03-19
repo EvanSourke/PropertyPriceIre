@@ -101,6 +101,8 @@ export class HouseSearchComponent implements OnInit {
   // filteredProperties: Observable<string[]>;
   filteredPrices: Observable<string[]>;
 
+  // moment(Start).format('DD/MM/YYYY')
+
   priceSearch(){
     let Start: Moment  = this.MainForm.controls['Start'].value;
     let End: Moment = this.MainForm.controls['End'].value;
@@ -108,9 +110,9 @@ export class HouseSearchComponent implements OnInit {
     const PriceFrom = this.MainForm.controls['PriceFrom'].value;
     const PriceTo = this.MainForm.controls['PriceTo'].value
 
-    console.log(County, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), PriceFrom, PriceTo);
+    //console.log(County, moment(Start, 'DD/MM/YYYY HH:mm:ss').toISOString(), moment(Start, 'DD/MM/YYYY HH:mm:ss').toISOString(), PriceFrom, PriceTo);
 
-    //this.housesService.getHouses(County, moment(Start).format('DD/MM/YYYY'), moment(End).format('DD/MM/YYYY'), PriceFrom , PriceTo)
+    this.housesService.getHouses(County, moment(Start, 'DD/MM/YYYY HH:mm:ss').toISOString(), moment(End, 'DD/MM/YYYY HH:mm:ss').toISOString(), PriceFrom , PriceTo)
 
   }
 
