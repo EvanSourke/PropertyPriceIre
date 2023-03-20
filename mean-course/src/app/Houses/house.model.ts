@@ -1,17 +1,11 @@
 
 export interface House {
 
-  dateOfSale: Date,
-  address: String,
-  county: String,
-  eircode: String,
-  price: Number,
-  notFullMarketPrice: String,
-  vatExclusive: String,
-  descriptionOfProperty: String,
-  propertySizeDescription: String
-
-
+  DateofSale: Date,
+  Address: String,
+  County: String,
+  Eircode: String,
+  Price: Number
 }
 
 

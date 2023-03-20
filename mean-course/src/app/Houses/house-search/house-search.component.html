@@ -15,7 +15,8 @@
            aria-label="County"
            matInput
            formControlName="County"
-           [matAutocomplete]="auto1">
+           [matAutocomplete]="auto1"
+           required="true">
     <mat-autocomplete #auto1="matAutocomplete">
       <mat-option *ngFor="let county of filteredCounties | async" [value]="county">
         {{county}}
@@ -47,8 +48,8 @@
   <mat-form-field class="date" appearance="fill">
     <mat-label>Enter a date range</mat-label>
     <mat-date-range-input  [rangePicker]="picker" >
-      <input matStartDate formControlName="Start" placeholder="Start date">
-      <input matEndDate formControlName="End" placeholder="End date" >
+      <input matStartDate formControlName="Start" placeholder="Start date"  required="true">>
+      <input matEndDate formControlName="End" placeholder="End date"  required="true"> >
     </mat-date-range-input>
     <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -69,7 +70,8 @@
            matInput
            formControlName="PriceFrom"
            [matAutocomplete]="auto3"
-           name="PriceFrom">
+           name="PriceFrom"
+           required="true">
     <mat-autocomplete #auto3="matAutocomplete">
       <mat-option *ngFor="let prices of filteredPrices | async" [value]="prices">
         {{prices}}
@@ -85,7 +87,8 @@
            matInput
            formControlName="PriceTo"
            [matAutocomplete]="auto4"
-           name="PriceTo">
+           name="PriceTo"
+           required="true">
     <mat-autocomplete #auto4="matAutocomplete">
       <mat-option *ngFor="let prices of filteredPrices | async" [value]="prices">
         {{prices}}
@@ -97,6 +100,7 @@
 
 <div>
   <button mat-raised-button type="submit">Search</button>
+  <button mat-raised-button type="reset" (click)="clearHouses()">Reset</button>
 </div>
 
 <div *ngIf = "AddressSearch">

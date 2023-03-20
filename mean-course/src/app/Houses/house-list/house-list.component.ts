@@ -29,16 +29,10 @@ export class HouseListComponent implements OnInit, OnDestroy  {
 
 
      });
+
+
   }
 
-  // update(){
-  //   this.housesSub = this.houseService.getHouseUpdateListener()
-  //   .subscribe((houses: House[]) => {
-  //     this.houses = houses;
-
-  //     console.log(this.houses);
-  //   });
-  // }
 
 
 

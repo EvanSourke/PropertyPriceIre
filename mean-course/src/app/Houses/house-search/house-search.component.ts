@@ -160,5 +160,9 @@ export class HouseSearchComponent implements OnInit {
     return value.toString().toLowerCase().replace(/\s/g, '');
   }
 
+   clearHouses(){
+    this.housesService.clearHouses();
+  }
+
 
 }

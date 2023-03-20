@@ -19,6 +19,11 @@ export class houseList {
     console.log(this.houses);
   }
 
+  clearHouses(){
+    this.houses = [];
+    this.listUpdate.next([...this.houses]);
+  }
+
   getData() {
     return this.listUpdate.asObservable();;
   }

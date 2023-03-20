@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators'
 import { House } from './house.model'
 import { TitleCasePipe } from '@angular/common';
 import { houseList } from './houseList.service';
+import {Moment} from 'moment';
 
 
 
@@ -45,8 +46,12 @@ export class HousesService {
     )
     .subscribe(response => {
       this.houses = response.houses;
+
+      // this.houses = this.houses.map(x => "DateofSale: " + x.DateofSale.toLocaleDateString() + "Address: " + x.Address + "County: " + x.County + "Eircode: " + x.Eircode);
+
       this.housesUpdated.next([...this.houses]);
 
+      console.log(this.houses);
       this.houseList.setData(this.houses);
 
     })
@@ -54,6 +59,13 @@ export class HousesService {
     //   console.log(updatedHouses);
     // });
 
+  }
+
+  clearHouses(){
+    this.houses = [];
+    this.getHouseUpdateListener();
+
+    this.houseList.clearHouses();
   }
 
    getHouseUpdateListener(){
