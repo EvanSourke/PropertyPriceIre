@@ -4,6 +4,8 @@ import { House } from "../house.model";
 import { HousesService } from "../houses.service";
 import { houseList } from "../houseList.service";
 
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-house-list',
   templateUrl: './house-list.component.html',
@@ -17,7 +19,7 @@ export class HouseListComponent implements OnInit, OnDestroy  {
   private housesSub: Subscription;
 
 
-  constructor(public houseService: HousesService, public houseList: houseList){}
+  constructor(public houseService: HousesService, public houseList: houseList, private sanitizer: DomSanitizer){}
 
   ngOnInit(){
    // this.House.getHouses();
@@ -32,8 +34,6 @@ export class HouseListComponent implements OnInit, OnDestroy  {
 
 
   }
-
-
 
 
 

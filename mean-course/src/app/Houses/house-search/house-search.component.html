@@ -1,9 +1,10 @@
 
 <div class="form-fields">
 <form [formGroup]="MainForm" (ngSubmit)="priceSearch()" >
+  <div class="centerElems">
   <div class="searchOptions">
-    <button mat-raised-button (click)="toggleSearch1()">Price Search</button>
-    <button mat-raised-button (click)="toggleSearch2()">Address Search</button>
+    <button mat-raised-button (click)="toggleSearch1()" class="buttonSearch">Price Search</button>
+    <button mat-raised-button (click)="toggleSearch2()" class="buttonSearch">Address Search</button>
   </div>
 
   <mat-card class="card">
@@ -23,8 +24,8 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-
 </div>
+
 <!-- <div *ngIf = "PriceSearch">
   <mat-form-field class="property" appearance="fill">
     <mat-label>Property Type</mat-label>
@@ -97,10 +98,10 @@
   </mat-form-field>
 
 </div>
-
-<div>
-  <button mat-raised-button type="submit">Search</button>
-  <button mat-raised-button type="reset" (click)="clearHouses()">Reset</button>
+<!-- [disabled]="!MainForm.valid" -->
+<div >
+  <button mat-raised-button type="submit" class="buttonSearch" [disabled]="!MainForm.valid">Search</button>
+  <button mat-raised-button type="reset"(click)="clearHouses()" class="buttonReset">Reset</button>
 </div>
 
 <div *ngIf = "AddressSearch">
@@ -120,5 +121,7 @@
 
   <!-- <p>Selected range: {{range.value | json}}</p> -->
 </mat-card>
+</div>
 </form>
+
 </div>

@@ -1,16 +1,26 @@
 .searchOptions{
   text-align: center;
   padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
 }
+
+/* .centerElems {
+  display: flex;
+  justify-content: center;
+} */
 
 .form-fields {
   text-align: center;
+
 }
 
 .card {
-  background-color: #c5b8ae;
+  background-color: #f4f3ee;
   margin: auto;
   width: auto;
+  border: 1px #aaa;
+  justify-content: center;
 }
 
 .county {
@@ -26,7 +36,14 @@
   text-align: center;
 }
 
+.buttonSearch {
+  background-color: #0e74ce !important;
+  margin-right: 10px;
+}
 
+.buttonReset {
+  background-color: #0e74ce !important;
+}
 
 
 
