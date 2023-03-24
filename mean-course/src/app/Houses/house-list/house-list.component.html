@@ -1,0 +1,21 @@
+<div *ngIf="houses.length>0" class="average">
+ <p>The average house price for your search is: {{getAverage()}}</p>
+</div>
+
+<mat-accordion multi="true" *ngIf="houses.length>0">
+  <mat-expansion-panel *ngFor="let house of houses ">
+    <mat-expansion-panel-header>
+        {{house.Address}}
+    </mat-expansion-panel-header>
+    <p> Address: {{house.Address}}</p>
+    <p> County: {{house.County}}</p>
+    <p> Date of sale: {{house.DateofSale}}</p>
+    <p> Price: {{house.Price}}</p>
+    <!-- <p> {{house.DescriptionofProperty}}</p> -->
+    <mat-action-row>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<p *ngIf="houses.length<=0" style="text-align: center;"> No houses returned yet!</p>
+
