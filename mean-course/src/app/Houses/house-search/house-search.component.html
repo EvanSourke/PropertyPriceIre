@@ -99,29 +99,33 @@
 
 </div>
 <!-- [disabled]="!MainForm.valid" -->
-<div >
+<div *ngIf = "PriceSearch">
   <button mat-raised-button type="submit" class="buttonSearch" [disabled]="!MainForm.valid">Search</button>
   <button mat-raised-button type="reset"(click)="clearHouses()" class="buttonReset">Reset</button>
-</div>
-
-<div *ngIf = "AddressSearch">
-  <mat-form-field class="Address" appearance="fill">
-    <mat-label>Address</mat-label>
-    <input type="text"
-           placeholder="Address"
-           aria-label="Address"
-           matInput
-           [formControl]="Address"
-           [matAutocomplete]="auto5">
-    <mat-autocomplete #auto5="matAutocomplete">
-    </mat-autocomplete>
-  </mat-form-field>
-
 </div>
 
   <!-- <p>Selected range: {{range.value | json}}</p> -->
 </mat-card>
 </div>
+</form>
+
+<form [formGroup]="SecondaryForm" *ngIf = "AddressSearch">
+
+  <div>
+    <mat-form-field class="Address" appearance="fill">
+      <mat-label>Address</mat-label>
+      <input type="text"
+             placeholder="Address"
+             aria-label="Address"
+             matInput
+             [formControl]="Address"
+             [matAutocomplete]="auto5">
+      <mat-autocomplete #auto5="matAutocomplete">
+      </mat-autocomplete>
+    </mat-form-field>
+
+  </div>
+
 </form>
 
 </div>
