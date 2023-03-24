@@ -1,6 +1,5 @@
 
 export interface House {
-
   DateofSale: Date,
   Address: String,
   County: String,

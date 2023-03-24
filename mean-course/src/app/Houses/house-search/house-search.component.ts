@@ -25,22 +25,25 @@ export class HouseSearchComponent implements OnInit {
 
 
   MainForm : FormGroup;
+  SecondaryForm: FormGroup;
   DateForm : FormGroup;
 
   constructor(public housesService: HousesService){
-    this.initializeForm();
+    this.initializeForms();
   };
 
-  initializeForm(){
+  initializeForms(){
     this.MainForm = new FormGroup({
       County: new FormControl(''),
-      PropertyType: new FormControl(''),
       PriceFrom: new FormControl(''),
       PriceTo: new FormControl(''),
-      Address: new FormControl(''),
       Start: new FormControl(''),
       End: new FormControl('')
     });
+
+    this.SecondaryForm = new FormGroup({
+      Address: new FormControl('')
+    })
 
   }
 
@@ -49,12 +52,14 @@ export class HouseSearchComponent implements OnInit {
   AddressSearch=false;
 
  toggleSearch1(){
+  this.clearHouses();
   this.PriceSearch=true;
   this.AddressSearch=false;
  };
  toggleSearch2(){
   this.PriceSearch=false;
   this.AddressSearch=true;
+  this.clearHouses();
  };
 
 
@@ -113,6 +118,13 @@ export class HouseSearchComponent implements OnInit {
     //console.log(County, moment(Start, 'DD/MM/YYYY HH:mm:ss').toISOString(), moment(Start, 'DD/MM/YYYY HH:mm:ss').toISOString(), PriceFrom, PriceTo);
 
     this.housesService.getHouses(County, moment(Start, 'DD/MM/YYYY HH:mm:ss').toISOString(), moment(End, 'DD/MM/YYYY HH:mm:ss').toISOString(), PriceFrom , PriceTo)
+
+  }
+
+  addressSearch(){
+    const Address = this.SecondaryForm.controls['Address'].value;
+
+    this.housesService.getHousesByAddress(Address);
 
   }
 

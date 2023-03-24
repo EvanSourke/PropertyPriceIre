@@ -17,7 +17,7 @@ export class HouseListComponent implements OnInit, OnDestroy  {
 
   houses: House[] = [];
   private housesSub: Subscription;
-
+  average: Number = 0;
 
   constructor(public houseService: HousesService, public houseList: houseList, private sanitizer: DomSanitizer){}
 
@@ -33,6 +33,18 @@ export class HouseListComponent implements OnInit, OnDestroy  {
      });
 
 
+  }
+
+  getAverage(){
+    const sum: number = this.houses.reduce((acc, obj) => acc + obj.Price.valueOf(), 0);
+    const average = sum/this.houses.length;
+    this.average=average;
+
+    return Math.round(average);
+  }
+
+  resetAvg(){
+    this.average=0;
   }
 
 
