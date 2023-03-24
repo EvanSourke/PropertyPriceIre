@@ -30,6 +30,9 @@ export class HousesService {
   //, responseType: 'json'
 
   getHouses(County: string, Start: Date, End: Date, PriceFrom: number, PriceTo: number){
+
+    this.clearHouses();
+
     const params = new HttpParams()
     .set('County', County)
     .set('Start', Start.toString())
@@ -47,25 +50,49 @@ export class HousesService {
     .subscribe(response => {
       this.houses = response.houses;
 
-      // this.houses = this.houses.map(x => "DateofSale: " + x.DateofSale.toLocaleDateString() + "Address: " + x.Address + "County: " + x.County + "Eircode: " + x.Eircode);
-
       this.housesUpdated.next([...this.houses]);
 
       console.log(this.houses);
       this.houseList.setData(this.houses);
 
     })
-    // this.housesUpdated.subscribe(updatedHouses => {
-    //   console.log(updatedHouses);
-    // });
 
   }
+
+  getHousesByAddress(Address: string){
+    this.clearHouses();
+
+    const params =  new HttpParams()
+    .set('Address', Address);
+
+    this.http.get<any>('http://localhost:3000/api/GET2', { params})
+    .pipe(
+      catchError((errorResponse: HttpErrorResponse) => {
+        console.log('An error occurred while fetching data', errorResponse);
+        return throwError('Something went wrong');
+      })
+    )
+    .subscribe(response => {
+      this.houses = response.houses;
+
+      // this.houses = this.houses.map(x => "DateofSale: " + x.DateofSale.toLocaleDateString() + "Address: " + x.Address + "County: " + x.County + "Eircode: " + x.Eircode);
+
+      this.housesUpdated.next([...this.houses]);
+
+      console.log(this.houses);
+      this.houseList.setData(this.houses);
+  })
+
+  }
+
+
 
   clearHouses(){
     this.houses = [];
     this.getHouseUpdateListener();
 
     this.houseList.clearHouses();
+
   }
 
    getHouseUpdateListener(){

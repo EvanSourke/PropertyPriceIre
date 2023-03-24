@@ -1,14 +1,15 @@
+<!-- (ngSubmit)="priceSearch()" -->
+
+<div class="searchOptions">
+  <button mat-raised-button (click)="toggleSearch1()" class="buttonSearch">Price Search</button>
+  <button mat-raised-button (click)="toggleSearch2()" class="buttonSearch">Address Search</button>
+</div>
 
 <div class="form-fields">
-<form [formGroup]="MainForm" (ngSubmit)="priceSearch()" >
+<form [formGroup]="MainForm"  *ngIf = "PriceSearch" >
   <div class="centerElems">
-  <div class="searchOptions">
-    <button mat-raised-button (click)="toggleSearch1()" class="buttonSearch">Price Search</button>
-    <button mat-raised-button (click)="toggleSearch2()" class="buttonSearch">Address Search</button>
-  </div>
-
   <mat-card class="card">
-  <div *ngIf = "PriceSearch">
+  <div >
   <mat-form-field class="county"  appearance="fill">
     <mat-label>County</mat-label>
     <input type="text"
@@ -44,8 +45,7 @@
   </mat-form-field>
 </div> -->
 
-<div *ngIf = "PriceSearch">
-
+<div>
   <mat-form-field class="date" appearance="fill">
     <mat-label>Enter a date range</mat-label>
     <mat-date-range-input  [rangePicker]="picker" >
@@ -59,10 +59,9 @@
     <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
     <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
   </mat-form-field>
-
 </div>
 
-<div *ngIf = "PriceSearch">
+<div >
   <mat-form-field class="priceFrom" appearance="fill">
     <mat-label>Price From (€)</mat-label>
     <input type="string"
@@ -98,19 +97,22 @@
   </mat-form-field>
 
 </div>
-<!-- [disabled]="!MainForm.valid" -->
-<div *ngIf = "PriceSearch">
-  <button mat-raised-button type="submit" class="buttonSearch" [disabled]="!MainForm.valid">Search</button>
+
+<div >
+  <button mat-raised-button (click)="priceSearch()" class="buttonSearch" [disabled]="!MainForm.valid">Search</button>
   <button mat-raised-button type="reset"(click)="clearHouses()" class="buttonReset">Reset</button>
 </div>
 
-  <!-- <p>Selected range: {{range.value | json}}</p> -->
 </mat-card>
 </div>
 </form>
+</div>
 
+
+
+<div class="form-fields">
 <form [formGroup]="SecondaryForm" *ngIf = "AddressSearch">
-
+  <mat-card class="card">
   <div>
     <mat-form-field class="Address" appearance="fill">
       <mat-label>Address</mat-label>
@@ -118,14 +120,21 @@
              placeholder="Address"
              aria-label="Address"
              matInput
-             [formControl]="Address"
-             [matAutocomplete]="auto5">
+             formControlName="Address"
+             [matAutocomplete]="auto5"
+             required="true">
       <mat-autocomplete #auto5="matAutocomplete">
       </mat-autocomplete>
     </mat-form-field>
-
+  </div>
+  <div>
+    <button mat-raised-button (click)="addressSearch()" class="buttonSearch" [disabled]="!SecondaryForm.valid">Search</button>
+    <button mat-raised-button type="reset"(click)="clearHouses()" class="buttonReset">Reset</button>
   </div>
 
+  </mat-card>
 </form>
 
 </div>
+
+

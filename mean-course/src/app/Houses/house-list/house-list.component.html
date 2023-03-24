@@ -1,3 +1,7 @@
+<div *ngIf="houses.length>0" class="average">
+ <p>The average house price for your search is: {{getAverage()}}</p>
+</div>
+
 <mat-accordion multi="true" *ngIf="houses.length>0">
   <mat-expansion-panel *ngFor="let house of houses ">
     <mat-expansion-panel-header>

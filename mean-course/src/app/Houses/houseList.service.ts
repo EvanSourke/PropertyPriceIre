@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { House } from './house.model'
+import { HouseListComponent } from './house-list/house-list.component';
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,7 @@ export class houseList {
   clearHouses(){
     this.houses = [];
     this.listUpdate.next([...this.houses]);
+
   }
 
   getData() {

@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+const moment = require('moment')
 
 const house = require("./models/house");
 
@@ -52,7 +52,35 @@ app.get("/api/GET" , (req, res, next) => {
   console.log(req.query);
 
   house.find({County: County, DateofSale: {$gte: Start, $lte: End }, Price: {$gte: PriceFrom, $lte: PriceTo }})
-  .then(documents => {
+  .then((documents) => {
+    documents = documents.map(document => ({
+      DateofSale: moment(document.DateofSale).format('DD/MM/YYYY'),
+      Address: document.Address,
+      County: document.County,
+      Price: document.Price,
+      Eircode: document.Eircode
+    }));
+    res.status(200).json({
+      message: 'Houses fetched successfully!',
+      houses: documents
+    });
+  });
+});
+
+app.get("/api/GET2" , (req, res, next) => {
+  const Address = String(req.query.Address);
+
+  console.log(req.query);
+
+  house.find({Address: {$regex: Address, $options: 'i'}})
+  .then((documents) => {
+    documents = documents.map(document => ({
+      DateofSale: moment(document.DateofSale).format('DD/MM/YYYY'),
+      Address: document.Address,
+      County: document.County,
+      Price: document.Price,
+      Eircode: document.Eircode
+    }));
     res.status(200).json({
       message: 'Houses fetched successfully!',
       houses: documents
