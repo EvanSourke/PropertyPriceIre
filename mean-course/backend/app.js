@@ -89,6 +89,4 @@ app.get("/api/GET2" , (req, res, next) => {
 });
 
 
-
-
 module.exports = app;
