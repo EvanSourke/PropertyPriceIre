@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { Observable } from "rxjs";
 import {startWith, map} from 'rxjs/operators';
-import { Subject } from 'rxjs';
+
 
 import { HousesService } from "../houses.service";
 import {Moment} from 'moment';
-import { House } from '../house.model';
+
 
 const moment = require('moment');
 
@@ -103,10 +103,10 @@ export class HouseSearchComponent implements OnInit {
   prices: string [] = ['50000','75000','100000','125000','150000','175000','200000','225000','250000','275000','300000','325000','350000','375000','400000','450000','500000','600000','700000','800000','800000','1000000', '2000000','5000000']
 
   filteredCounties: Observable<string[]>;
-  // filteredProperties: Observable<string[]>;
+
   filteredPrices: Observable<string[]>;
 
-  // moment(Start).format('DD/MM/YYYY')
+
 
   priceSearch(){
     let Start: Moment  = this.MainForm.controls['Start'].value;

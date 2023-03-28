@@ -47,10 +47,10 @@
 
 <div>
   <mat-form-field class="date" appearance="fill">
-    <mat-label>Enter a date range</mat-label>
+    <mat-label>Enter a date range*</mat-label>
     <mat-date-range-input  [rangePicker]="picker" >
-      <input matStartDate formControlName="Start" placeholder="Start date"  required="true">>
-      <input matEndDate formControlName="End" placeholder="End date"  required="true"> >
+      <input matStartDate formControlName="Start" placeholder="Start date"  required="true">
+      <input matEndDate formControlName="End" placeholder="End date" required="true" >
     </mat-date-range-input>
     <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
